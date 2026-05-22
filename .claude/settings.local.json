@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Read(//d/AI workroom/**)",
+      "Bash(npm create *)",
+      "Bash(npm -v)",
+      "Bash(npx --version)",
+      "Bash(npx vite *)",
+      "Bash(npm list *)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git *)"
+    ]
+  }
+}

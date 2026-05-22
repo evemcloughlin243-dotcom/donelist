@@ -1,0 +1,14 @@
+{
+  "name": "Donelist - 已做事项时间统计",
+  "short_name": "Donelist",
+  "description": "记录已做事项，分析时间去向",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1a1a2e",
+  "background_color": "#1a1a2e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
