@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { db } from '../db/database';
 import { PROVIDERS, getAIConfig, saveAIConfig, type AIConfig } from '../lib/ai';
+import { useTheme } from '../hooks/useTheme';
 
 export default function Settings() {
+  const { theme, toggle } = useTheme();
   const [config, setConfig] = useState<AIConfig>({
     provider: 'anthropic', apiKey: '', model: '', baseURL: '',
   });
@@ -77,6 +79,21 @@ export default function Settings() {
   return (
     <div className="px-4 pt-4 pb-8 space-y-5">
       <h1 className="text-base font-semibold pt-2" style={{ color: 'var(--text)' }}>设置</h1>
+
+      {/* Theme */}
+      <div className="card-lg p-4 flex items-center justify-between">
+        <div>
+          <h2 className="text-sm font-medium" style={{ color: 'var(--text)' }}>外观</h2>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
+            {theme === 'light' ? '明亮模式' : '暗色模式'}
+          </p>
+        </div>
+        <button onClick={toggle}
+          className="text-2xl p-2 rounded-xl card-press transition-all"
+          style={{ background: 'var(--bg-card-hover)' }}>
+          {theme === 'light' ? '☀️' : '🌙'}
+        </button>
+      </div>
 
       {/* AI Config */}
       <div className="card-lg p-5 space-y-4">
@@ -177,6 +194,25 @@ export default function Settings() {
             建议将应用添加到主屏幕以启用持久化存储，防止数据被浏览器自动清理
           </p>
         )}
+      </div>
+
+      {/* Install */}
+      <div className="card-lg p-5 space-y-3">
+        <div>
+          <h2 className="text-sm font-medium" style={{ color: 'var(--text)' }}>安装应用</h2>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>添加到手机桌面，像 App 一样使用，数据更安全</p>
+        </div>
+        <button onClick={() => {
+          // Re-show the install prompt
+          localStorage.removeItem('donelist_pwa_dismissed');
+          window.location.reload();
+        }} className="btn-ghost w-full py-3 rounded-xl">
+          📲 重新显示安装指引
+        </button>
+        <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
+          Android: Chrome 右上角 ⋮ → 安装应用<br/>
+          iOS: Safari 底部 分享 → 添加到主屏幕
+        </p>
       </div>
 
       {/* Data management */}
